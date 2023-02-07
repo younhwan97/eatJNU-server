@@ -1,5 +1,6 @@
 const placeList = {
-    get: (req, res) => {
+
+    type0: (req, res) => {
         // 타입 정보를 얻어온다
         let type = req.body.type || 0
 
@@ -96,7 +97,11 @@ const placeList = {
                 ]
             }
         )
-    }
+    },
+
+    type1: (req, res) => {},
+
+    type2: (req, res) => {}
 }
 
 module.exports = {
