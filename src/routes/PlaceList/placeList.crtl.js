@@ -9,8 +9,7 @@ const placeList = {
         // 요청
         // connect..
 
-        
-
+        return res.send("나영츄는 바보이다.")
     }
 }
 
