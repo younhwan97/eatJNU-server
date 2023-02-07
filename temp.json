@@ -1,0 +1,95 @@
+{
+  "items": [
+    {
+      "id": "tt15679400",
+      "rank": "1",
+      "title": "Knock at the Cabin",
+      "image": "https://m.media-amazon.com/images/M/MV5BZTc4MjU0MjMtYTEwNy00YjNlLTk2MGYtMjNlNzFjMmY4MjQ0XkEyXkFqcGdeQXVyODk4OTc3MTY@._V1_UX128_CR0,3,128,176_AL_.jpg",
+      "weekend": "$14.1M",
+      "gross": "$14.1M",
+      "weeks": "1"
+    },
+    {
+      "id": "tt18079362",
+      "rank": "2",
+      "title": "80 for Brady",
+      "image": "https://m.media-amazon.com/images/M/MV5BNzY4MzQ1MTgtNGZiYS00Y2M5LWJmODUtYzIzNWFlOGZjMjk5XkEyXkFqcGdeQXVyMTA3MDk2NDg2._V1_UX128_CR0,3,128,176_AL_.jpg",
+      "weekend": "$12.7M",
+      "gross": "$12.7M",
+      "weeks": "1"
+    },
+    {
+      "id": "tt1630029",
+      "rank": "3",
+      "title": "Avatar: The Way of Water",
+      "image": "https://m.media-amazon.com/images/M/MV5BYjhiNjBlODctY2ZiOC00YjVlLWFlNzAtNTVhNzM1YjI1NzMxXkEyXkFqcGdeQXVyMjQxNTE1MDA@._V1_UX128_CR0,1,128,176_AL_.jpg",
+      "weekend": "$11.3M",
+      "gross": "$637.0M",
+      "weeks": "8"
+    },
+    {
+      "id": "tt24807190",
+      "rank": "4",
+      "title": "BTS: Yet to Come in Cinemas",
+      "image": "https://m.media-amazon.com/images/M/MV5BMGM4MmUwMmItM2FhZC00YWJlLTg0YjUtMjJkYmEzOGM2ZDIxXkEyXkFqcGdeQXVyMTA3MDk2NDg2._V1_UX128_CR0,3,128,176_AL_.jpg",
+      "weekend": "$8.0M",
+      "gross": "$8.0M",
+      "weeks": "1"
+    },
+    {
+      "id": "tt3915174",
+      "rank": "5",
+      "title": "Puss in Boots: The Last Wish",
+      "image": "https://m.media-amazon.com/images/M/MV5BNjMyMDBjMGUtNDUzZi00N2MwLTg1MjItZTk2MDE1OTZmNTYxXkEyXkFqcGdeQXVyMTQ5NjA0NDM0._V1_UX128_CR0,3,128,176_AL_.jpg",
+      "weekend": "$7.9M",
+      "gross": "$151.2M",
+      "weeks": "7"
+    },
+    {
+      "id": "tt7405458",
+      "rank": "6",
+      "title": "A Man Called Otto",
+      "image": "https://m.media-amazon.com/images/M/MV5BNzg3OTEzMTgtYWU0OC00YTI0LWIxOTAtNmRkNTc0Nzg2YWU1XkEyXkFqcGdeQXVyNjY1MTg4Mzc@._V1_UY176_CR6,0,128,176_AL_.jpg",
+      "weekend": "$4.2M",
+      "gross": "$53.1M",
+      "weeks": "6"
+    },
+    {
+      "id": "tt8760708",
+      "rank": "7",
+      "title": "M3GAN",
+      "image": "https://m.media-amazon.com/images/M/MV5BMDk4MTdhYzEtODk3OS00ZDBjLWFhNTQtMDI2ODdjNzQzZTA3XkEyXkFqcGdeQXVyMjMxOTE0ODA@._V1_UX128_CR0,3,128,176_AL_.jpg",
+      "weekend": "$3.8M",
+      "gross": "$87.6M",
+      "weeks": "5"
+    },
+    {
+      "id": "tt10855768",
+      "rank": "8",
+      "title": "Missing",
+      "image": "https://m.media-amazon.com/images/M/MV5BNzI3MmU1NjQtZmM2ZC00Y2NkLWFhMDMtZmVhYTc1NTFjZTFhXkEyXkFqcGdeQXVyMTAxNzQ1NzI@._V1_UY176_CR6,0,128,176_AL_.jpg",
+      "weekend": "$3.7M",
+      "gross": "$23.0M",
+      "weeks": "3"
+    },
+    {
+      "id": "tt26658653",
+      "rank": "9",
+      "title": "Episode #3.8",
+      "image": "https://imdb-api.com/images/128x176/nopicture.jpg",
+      "weekend": "$3.6M",
+      "gross": "$5.3M",
+      "weeks": "1"
+    },
+    {
+      "id": "tt12844910",
+      "rank": "10",
+      "title": "Pathaan",
+      "image": "https://m.media-amazon.com/images/M/MV5BM2QzM2JiNTMtYjU4Ny00MDZkLTk3MmUtYTRjMzVkZGJlNmYyXkEyXkFqcGdeQXVyMTUzNTgzNzM0._V1_UY176_CR0,0,128,176_AL_.jpg",
+      "weekend": "$2.7M",
+      "gross": "$14.3M",
+      "weeks": "2"
+    }
+  ],
+  "errorMessage": ""
+}
