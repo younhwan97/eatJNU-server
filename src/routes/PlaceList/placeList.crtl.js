@@ -2,10 +2,11 @@ const placeList = {
 
     type0: (req, res) => {
         // 쿼리 생성
-        let query = "SELECT * FROM places type = ?;"
+        let query = "SELECT (id, name, review_count, like_count, tags, filter) FROM store WHERE area = ?;"
 
-        // 요청
-        // connect..
+        req.app.get('dbConnection').query(query, 0, (err, result) => {
+            console.log(result)
+        })
 
         return res.json(
             {
