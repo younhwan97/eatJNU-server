@@ -5,6 +5,7 @@ const placeList = {
         let query = "SELECT (id, name, review_count, like_count, tags, filter) FROM store WHERE area = ?;"
 
         req.app.get('dbConnection').query(query, 0, (err, result) => {
+            console.log(err)
             console.log(result)
         })
 

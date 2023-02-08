@@ -1,3 +1,6 @@
+// fs
+const fs = require("fs")
+
 // Express
 const express = require('express')
 const app = express()
@@ -18,7 +21,6 @@ app.set('dbConnection', connection)
 
 // Routing
 const placeListRouter = require("./src/routes/PlaceList")
-const fs = require("fs");
 
 app.use("/API/PlaceList", placeListRouter)
 
