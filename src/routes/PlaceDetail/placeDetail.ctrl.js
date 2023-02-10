@@ -1,3 +1,5 @@
+const mysql = require('mysql')
+
 const placeDetail = {
 
     get: (req, res) => {
@@ -6,7 +8,10 @@ const placeDetail = {
 
         // 쿼리 생성
         let query_store = "SELECT * FROM store WHERE store_id = ?;"
+        query_store = mysql.format(query_store, placeId)
+
         let query_img = "SELECT * FROM image WHERE store_id = ?;"
+        query_img = mysql.format(query_img, placeId)
 
         // 결과
         let ans = {
@@ -24,7 +29,7 @@ const placeDetail = {
         }
 
         // DB 요청 및 리턴
-        req.app.get('dbConnection').query(query_store + query_img, [placeId, placeId], (err, result) => {
+        req.app.get('dbConnection').query(query_store + query_img, (err, result) => {
             if (err) throw err
 
             console.log(result[0])
