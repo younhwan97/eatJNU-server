@@ -25,7 +25,9 @@ const placeDetail = {
             "location": "",
             "number": "",
             "openingInfo": "",
-            "images": []
+            "images": [],
+            "lat": 0,
+            "lon": 0
         }
 
         // DB 요청 및 리턴
@@ -45,6 +47,8 @@ const placeDetail = {
                 ans["location"] = info.location || ""
                 ans["number"] = info.number || ""
                 ans["openingInfo"] = info.opening_info || ""
+                ans["lat"] = info.lat || 0
+                ans["lon"] = info.lon || 0
 
                 for (let i = 0; i < result[1].length; i++) {
                     ans["images"].push({
