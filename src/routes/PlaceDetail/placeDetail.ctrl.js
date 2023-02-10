@@ -5,7 +5,8 @@ const placeDetail = {
         const placeId = req.params.id
 
         // 쿼리 생성
-        const query = "SELECT * FROM store WHERE store_id = ?;"
+        let query_store = "SELECT * FROM store WHERE store_id = ?;"
+        let query_img = "SELECT * FROM image WHERE store_id = ?;"
 
         // 결과
         let ans = {
@@ -18,12 +19,16 @@ const placeDetail = {
             "image": "",
             "location": "",
             "number": "",
-            "openingInfo": ""
+            "openingInfo": "",
+            "images": []
         }
 
         // DB 요청 및 리턴
-        req.app.get('dbConnection').query(query, placeId, (err, result) => {
+        req.app.get('dbConnection').query(query_store + query_img, [placeId, placeId], (err, result) => {
             if (err) throw err
+
+            console.log(result[0])
+            console.log(result[1])
 
             if (result.length !== 0) {
                 ans["id"] = result[0].store_id || -1
