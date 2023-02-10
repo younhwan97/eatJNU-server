@@ -33,19 +33,19 @@ const placeDetail = {
             if (err) throw err
 
             if (result.length !== 0) {
-                ans["id"] = result[0].store_id || -1
-                ans["name"] = result[0].name || ""
-                ans["likeCount"] = result[0].like_count || 0
-                ans["reviewCount"] = result[0].review_count || 0
-                ans["filter"] = result[0].filter || ""
-                ans["tags"] = result[0].tags || ""
-                ans["image"] = result[0].url || ""
-                ans["location"] = result[0].location || ""
-                ans["number"] = result[0].number || ""
-                ans["openingInfo"] = result[0].opening_info || ""
+                ans["id"] = result[0][0].store_id || -1
+                ans["name"] = result[0][0].name || ""
+                ans["likeCount"] = result[0][0].like_count || 0
+                ans["reviewCount"] = result[0][0].review_count || 0
+                ans["filter"] = result[0][0].filter || ""
+                ans["tags"] = result[0][0].tags || ""
+                ans["image"] = result[0][0].url || ""
+                ans["location"] = result[0][0].location || ""
+                ans["number"] = result[0][0].number || ""
+                ans["openingInfo"] = result[0][0].opening_info || ""
 
                 for (let i = 0; i < result[1].length; i++)
-                    ans["images"].push(result[1][i])
+                    ans["images"].push(result[1][i]["url"])
             }
 
             console.log(ans)
