@@ -10,7 +10,7 @@ const placeDetail = {
         let query_store = "SELECT * FROM store WHERE store_id = ?;"
         query_store = mysql.format(query_store, placeId)
 
-        let query_img = "SELECT * FROM image WHERE store_id = ?;"
+        let query_img = "SELECT url FROM image WHERE store_id = ?;"
         query_img = mysql.format(query_img, placeId)
 
         // 결과
@@ -32,9 +32,6 @@ const placeDetail = {
         req.app.get('dbConnection').query(query_store + query_img, (err, result) => {
             if (err) throw err
 
-            console.log(result[0])
-            console.log(result[1])
-
             if (result.length !== 0) {
                 ans["id"] = result[0].store_id || -1
                 ans["name"] = result[0].name || ""
@@ -46,8 +43,12 @@ const placeDetail = {
                 ans["location"] = result[0].location || ""
                 ans["number"] = result[0].number || ""
                 ans["openingInfo"] = result[0].opening_info || ""
+
+                for (let i = 0; i < result[1].length; i++)
+                    ans["images"].push(result[1][i])
             }
 
+            console.log(ans)
             return res.json(ans)
         })
     }

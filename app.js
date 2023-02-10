@@ -12,7 +12,8 @@ const connection = mysql.createConnection({
     host: dbConf.host,
     user: dbConf.user,
     password: dbConf.password,
-    database: dbConf.database
+    database: dbConf.database,
+    multipleStatements: true
 })
 connection.connect()
 
