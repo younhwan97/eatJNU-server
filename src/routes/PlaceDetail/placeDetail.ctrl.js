@@ -10,7 +10,7 @@ const placeDetail = {
         let query_store = "SELECT * FROM store WHERE store_id = ?;"
         query_store = mysql.format(query_store, placeId)
 
-        let query_img = "SELECT url FROM image WHERE store_id = ?;"
+        let query_img = "SELECT url, is_menu FROM image WHERE store_id = ?;"
         query_img = mysql.format(query_img, placeId)
 
         // 결과
@@ -46,7 +46,13 @@ const placeDetail = {
                 ans["number"] = info.number || ""
                 ans["openingInfo"] = info.opening_info || ""
 
-                for (let i = 0; i < result[1].length; i++) ans["images"].push(result[1][i]["url"])
+                for (let i = 0; i < result[1].length; i++) {
+                    ans["images"].push({
+                            "url": result[1][i]["url"],
+                            "isMenu": result[1][i]["is_menu"]
+                        }
+                    )
+                }
             }
 
             return res.json(ans)
