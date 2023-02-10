@@ -21,7 +21,7 @@ app.set('dbConnection', connection)
 
 // Routing
 const placeListRouter = require("./src/routes/PlaceList")
-const placeDetailRouter = require("./src/routes/PlaceDatail")
+const placeDetailRouter = require("./src/routes/PlaceDetail")
 
 app.use("/API/PlaceList", placeListRouter)
 app.use("/API/PlaceDetail", placeDetailRouter)

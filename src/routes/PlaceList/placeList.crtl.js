@@ -2,13 +2,7 @@ const placeList = {
 
     get: (req, res) => {
         // 타입 정보를 얻어온다
-        let areaType = req.url
-
-        if (areaType === "/0") areaType = 0
-        else if (areaType === "/1") areaType = 1
-        else if (areaType === "/2") areaType = 2
-        else if (areaType === "/3") areaType = 3
-        else areaType = 0
+        let areaType = req.params.type
 
         // 쿼리 생성
         const query = "SELECT store_id, name, review_count, like_count, tags, filter, url FROM store WHERE area = ?;"
