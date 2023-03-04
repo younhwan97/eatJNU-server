@@ -31,7 +31,7 @@ const placeDetail = {
         }
 
         // DB 요청 및 리턴
-        req.app.get('dbConnection').query(query_store + query_img + query_like, (err, result) => {
+        req.app.get('dbConnection').query(query_store + query_img, (err, result) => {
             if (err) throw err
 
             if (result.length !== 0 && result[0] != null && result[1] != null) {

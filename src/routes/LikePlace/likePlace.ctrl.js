@@ -46,9 +46,13 @@ const likePlace = {
             req.app.get('dbConnection').query(query, placeId, (err, result) => {
                 if (err) throw err
 
-                console.log(result)
-            })
+                let count = result.length || 0
 
+                query = "UPDATE store SET like_count = ? WHERE store_id = ?;"
+                req.app.get('dbConnection').query(query, [count, placeId], (err, result) => {
+                    if (err) throw err
+                })
+            })
 
             return res.json({
                 "placeId": placeId
