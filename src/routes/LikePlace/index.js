@@ -7,4 +7,6 @@ router.get("/:user", ctrl.likePlace.get)
 
 router.put('/:user/:place', ctrl.likePlace.put)
 
+router.delete('/:user/:place', ctrl.likePlace.delete)
+
 module.exports = router
