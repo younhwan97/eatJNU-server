@@ -1,13 +1,31 @@
-const mysql = require('mysql')
-const {json} = require("express");
-
 const likePlace = {
 
     get: (req, res) => {
         // 유저 아이디를 정보를 얻어온다
         const userId = req.params.user
 
-        console.log(userId)
+        // 쿼리 생성
+        const query = "SELECT * FROM like_store WHERE user_id = ?;"
+
+        // 결과
+        let ans = {
+            "items": []
+        }
+
+        // DB 요청
+        req.app.get('dbConnection').query(query, userId, (err, result) => {
+            if (err) throw err
+
+            if (result.length !== 0) {
+                for (let i = 0; i < result.length; i++) {
+                    ans["items"].push({
+                        "placeId": result[i].place_id
+                    })
+                }
+            }
+
+            return res.json(ans)
+        })
     },
 
     put: (req, res) => {
@@ -23,7 +41,7 @@ const likePlace = {
             if (err) throw err
 
             return res.json({
-                "placeId" : placeId
+                "placeId": placeId
             })
         })
     }
