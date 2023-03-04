@@ -34,11 +34,13 @@ const likePlace = {
         const placeId = req.params.place
 
         // 쿼리 생성
-        const query = "INSERT IGNORE INTO like_store(user_id, store_id) VALUES (?, ?);"
+        let query = "INSERT IGNORE INTO like_store(user_id, store_id) VALUES (?, ?);"
 
         // DB 요청
         req.app.get('dbConnection').query(query, [userId, placeId], (err, result) => {
             if (err) throw err
+
+            console.log(result)
 
             return res.json({
                 "placeId": placeId
