@@ -36,23 +36,15 @@ const likePlace = {
         const placeId = req.params.place
 
         // 쿼리 생성
-        let query = "INSERT IGNORE INTO like_store(user_id, store_id) VALUES (?, ?);"
+        let query_like = "INSERT IGNORE INTO like_store(user_id, store_id) VALUES (?, ?);"
+        query_like = mysql.format(query_like, [userId, placeId])
+
+        let query_store = "UPDATE store SET like_count = like_count + 1  WHERE store_id = ?;"
+        query_store = mysql.format(query_store, placeId)
 
         // DB 요청
-        req.app.get('dbConnection').query(query, [userId, placeId], (err, result) => {
+        req.app.get('dbConnection').query(query_like + query_store, (err, result) => {
             if (err) throw err
-
-            query = "SELECT * FROM like_store WHERE store_id = ?;"
-            req.app.get('dbConnection').query(query, placeId, (err, result) => {
-                if (err) throw err
-
-                let count = result.length || 0
-
-                query = "UPDATE store SET like_count = ? WHERE store_id = ?;"
-                req.app.get('dbConnection').query(query, [count, placeId], (err, result) => {
-                    if (err) throw err
-                })
-            })
 
             return res.json({
                 "placeId": placeId
@@ -66,10 +58,14 @@ const likePlace = {
         const placeId = req.params.place
 
         // 쿼리 생성
-        const query = "DELETE FROM like_store WHERE user_id = ? AND store_id = ?;"
+        let query_like = "DELETE FROM like_store WHERE user_id = ? AND store_id = ?;"
+        query_like = mysql.format(query_like, [userId, placeId])
+
+        let query_store = "UPDATE store SET like_count = like_count - 1  WHERE store_id = ?;"
+        query_store = mysql.format(query_store, placeId)
 
         // DB 요청
-        req.app.get('dbConnection').query(query, [userId, placeId], (err, result) => {
+        req.app.get('dbConnection').query(query_like + query_store, (err, result) => {
             if (err) throw err
 
             return res.json({
