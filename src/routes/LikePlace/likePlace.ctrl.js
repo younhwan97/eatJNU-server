@@ -1,3 +1,5 @@
+const mysql = require('mysql')
+
 const likePlace = {
 
     get: (req, res) => {
@@ -40,7 +42,13 @@ const likePlace = {
         req.app.get('dbConnection').query(query, [userId, placeId], (err, result) => {
             if (err) throw err
 
-            console.log(result)
+            query = "SELECT * FROM like_store WHERE store_id = ?;"
+            req.app.get('dbConnection').query(query, placeId, (err, result) => {
+                if (err) throw err
+
+                console.log(result)
+            })
+
 
             return res.json({
                 "placeId": placeId

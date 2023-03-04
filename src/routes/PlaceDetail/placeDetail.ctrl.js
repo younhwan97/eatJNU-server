@@ -13,9 +13,6 @@ const placeDetail = {
         let query_img = "SELECT url, is_menu FROM image WHERE store_id = ?;"
         query_img = mysql.format(query_img, placeId)
 
-        let query_like = "SELECT * FROM like_store WHERE store_id = ?;"
-        query_like = mysql.format(query_like, placeId)
-
         // 결과
         let ans = {
             "id": -1,
@@ -60,8 +57,6 @@ const placeDetail = {
                         }
                     )
                 }
-
-                console.log(res[2])
             }
 
             return res.json(ans)
