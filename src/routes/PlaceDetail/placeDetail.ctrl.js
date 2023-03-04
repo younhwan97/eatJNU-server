@@ -13,6 +13,9 @@ const placeDetail = {
         let query_img = "SELECT url, is_menu FROM image WHERE store_id = ?;"
         query_img = mysql.format(query_img, placeId)
 
+        let query_like = "SELECT * FROM like_store WHERE store_id = ?;"
+        query_like = mysql.format(query_like, placeId)
+
         // 결과
         let ans = {
             "id": -1,
@@ -31,7 +34,7 @@ const placeDetail = {
         }
 
         // DB 요청 및 리턴
-        req.app.get('dbConnection').query(query_store + query_img, (err, result) => {
+        req.app.get('dbConnection').query(query_store + query_img + query_like, (err, result) => {
             if (err) throw err
 
             if (result.length !== 0 && result[0] != null && result[1] != null) {
@@ -57,6 +60,8 @@ const placeDetail = {
                         }
                     )
                 }
+
+                console.log(res[2])
             }
 
             return res.json(ans)
