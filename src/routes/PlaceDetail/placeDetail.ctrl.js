@@ -13,6 +13,9 @@ const placeDetail = {
         let query_img = "SELECT url, is_menu FROM image WHERE store_id = ?;"
         query_img = mysql.format(query_img, placeId)
 
+        let query_review = "SELECT comment, writing_time FROM review WHERE store_id = ?;"
+        query_review = mysql.format(query_review, placeId)
+
         // 결과
         let ans = {
             "id": -1,
@@ -27,11 +30,12 @@ const placeDetail = {
             "openingInfo": "",
             "images": [],
             "lat": 0,
-            "lon": 0
+            "lon": 0,
+            "reviews": []
         }
 
         // DB 요청 및 리턴
-        req.app.get('dbConnection').query(query_store + query_img, (err, result) => {
+        req.app.get('dbConnection').query(query_store + query_img + query_review, (err, result) => {
             if (err) throw err
 
             if (result.length !== 0 && result[0] != null && result[1] != null) {
@@ -56,6 +60,13 @@ const placeDetail = {
                             "isMenu": result[1][i]["is_menu"]
                         }
                     )
+                }
+
+                for (let i = 0; i < result[2].length; i++) {
+                    ans["reviews"].push({
+                        "comment": result[2][i]["comment"],
+                        "writingTime": result[2][i]["writing_time"]
+                    })
                 }
             }
 
