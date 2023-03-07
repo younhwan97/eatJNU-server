@@ -23,7 +23,15 @@ const placeReview = {
         req.app.get('dbConnection').query(query_review + query_review2, (err, result) => {
             if (err) throw err
 
-            console.log(result[1])
+            if (result.length >= 2 && result[1] != null) { // 리뷰 개수 업데이트
+                let count = result[1].length || 0
+
+                let query_store = "UPDATE store SET review_count = ? WHERE store_id = ?;"
+                query_store = mysql.format(query_store, [count, storeId])
+
+                req.app.get('dbConnection').query(query_store, (err, result) => {if (err) throw err})
+            }
+
 
             return res.json({
                 "isSuccess": true
