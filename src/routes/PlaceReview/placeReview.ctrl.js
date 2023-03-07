@@ -18,12 +18,7 @@ const placeReview = {
             if (err) throw err
 
             return res.json({
-                "name": "",
-                "comment": comment,
-                "writingTime": now,
-                "userId": userId,
-                "likeCount": 0,
-                "placeId": storeId
+                "isSuccess": true
             })
         })
     }
