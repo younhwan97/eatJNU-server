@@ -64,7 +64,6 @@ const placeDetail = {
 
                 for (let i = 0; i < result[2].length; i++) {
                     ans["reviews"].push({
-                        "name": result[2][i]["name"] || "",
                         "comment": result[2][i]["comment"] || "",
                         "writingTime": result[2][i]["writing_time"] || "",
                         "userId": result[2][i]["user_id"] || "",
