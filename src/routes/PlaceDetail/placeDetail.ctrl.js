@@ -13,7 +13,7 @@ const placeDetail = {
         let query_img = "SELECT url, is_menu FROM image WHERE store_id = ?;"
         query_img = mysql.format(query_img, placeId)
 
-        let query_review = "SELECT name, comment, writing_time, user_id FROM review WHERE store_id = ? ORDER BY like_count DESC LIMIT 5;"
+        let query_review = "SELECT name, comment, writing_time, user_id, like_count FROM review WHERE store_id = ? ORDER BY like_count DESC;"
         query_review = mysql.format(query_review, placeId)
 
         // 결과
@@ -56,19 +56,19 @@ const placeDetail = {
 
                 for (let i = 0; i < result[1].length; i++) {
                     ans["images"].push({
-                            "url": result[1][i]["url"],
-                            "isMenu": result[1][i]["is_menu"]
+                            "url": result[1][i]["url"] || "",
+                            "isMenu": result[1][i]["is_menu"] || 0
                         }
                     )
                 }
 
                 for (let i = 0; i < result[2].length; i++) {
                     ans["reviews"].push({
-                        "name": result[2][i]["name"],
-                        "comment": result[2][i]["comment"],
-                        "writingTime": result[2][i]["writing_time"],
-                        "userId": result[2][i]["user_id"],
-                        "likeCount": result[2][i]["like_count"]
+                        "name": result[2][i]["name"] || "",
+                        "comment": result[2][i]["comment"] || "",
+                        "writingTime": result[2][i]["writing_time"] || "",
+                        "userId": result[2][i]["user_id"] || "",
+                        "likeCount": result[2][i]["like_count"] || 0
                     })
                 }
             }
