@@ -16,12 +16,14 @@ const placeReview = {
         let query_review = "INSERT INTO review (store_id, comment, writing_time, user_id) VALUES (?, ?, ?, ?);"
         query_review = mysql.format(query_review, [storeId, comment, now, userId])
 
-        let query_store = "UPDATE store SET review_count = review_count + 1  WHERE store_id = ?;"
-        query_store = mysql.format(query_store, storeId)
+        let query_review2 = "SELECT * FROM review WHERE store_id = ?"
+        query_review2 = mysql.format(query_review2, storeId)
 
         // DB 요청 및 리턴
-        req.app.get('dbConnection').query(query_review + query_store, (err, result) => {
+        req.app.get('dbConnection').query(query_review + query_review2, (err, result) => {
             if (err) throw err
+
+            console.log(result[1])
 
             return res.json({
                 "isSuccess": true
