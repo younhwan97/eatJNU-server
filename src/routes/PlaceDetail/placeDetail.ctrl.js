@@ -21,7 +21,6 @@ const placeDetail = {
             "id": -1,
             "name": "",
             "likeCount": 0,
-            "reviewCount": 0,
             "filter": "",
             "tags": "",
             "image": "",
@@ -44,7 +43,6 @@ const placeDetail = {
                 ans["id"] = info.store_id || -1
                 ans["name"] = info.name || ""
                 ans["likeCount"] = info.like_count || 0
-                ans["reviewCount"] = info.review_count || 0
                 ans["filter"] = info.filter || ""
                 ans["tags"] = info.tags || ""
                 ans["image"] = info.url || ""
