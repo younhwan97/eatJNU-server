@@ -13,7 +13,7 @@ const placeDetail = {
         let query_img = "SELECT url, is_menu FROM image WHERE store_id = ?;"
         query_img = mysql.format(query_img, placeId)
 
-        let query_review = "SELECT name, comment, writing_time, user_id, like_count FROM review WHERE store_id = ? ORDER BY like_count DESC;"
+        let query_review = "SELECT comment, writing_time, user_id, like_count FROM review WHERE store_id = ? ORDER BY writing_time DESC;"
         query_review = mysql.format(query_review, placeId)
 
         // 결과
