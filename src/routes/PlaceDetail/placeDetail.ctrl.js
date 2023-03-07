@@ -1,7 +1,6 @@
 const mysql = require('mysql')
 
 const placeDetail = {
-
     get: (req, res) => {
         // 장소의 아이디 정보를 얻어온다
         const placeId = req.params.id
@@ -10,7 +9,7 @@ const placeDetail = {
         let query_store = "SELECT * FROM store WHERE store_id = ?;"
         query_store = mysql.format(query_store, placeId)
 
-        let query_img = "SELECT url, is_menu FROM image WHERE store_id = ?;"
+        let query_img = "SELECT url FROM image WHERE store_id = ?;"
         query_img = mysql.format(query_img, placeId)
 
         let query_review = "SELECT comment, writing_time, user_id, like_count FROM review WHERE store_id = ? ORDER BY writing_time DESC;"
@@ -56,8 +55,7 @@ const placeDetail = {
 
                 for (let i = 0; i < result[1].length; i++) {
                     ans["images"].push({
-                            "url": result[1][i]["url"] || "",
-                            "isMenu": result[1][i]["is_menu"] || 0
+                            "url": result[1][i]["url"] || ""
                         }
                     )
                 }
