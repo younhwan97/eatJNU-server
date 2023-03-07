@@ -4,6 +4,7 @@ const fs = require("fs")
 // Express
 const express = require('express')
 const app = express()
+app.use(express.json());
 
 // MySQL
 const mysql = require('mysql')
@@ -23,11 +24,12 @@ app.set('dbConnection', connection)
 // Routing
 const placeListRouter = require("./src/routes/PlaceList")
 const placeDetailRouter = require("./src/routes/PlaceDetail")
-const placeReview = require("./src/routes/PlaceReview")
+const placeReviewRouter = require("./src/routes/PlaceReview")
 const likePlaceRouter = require("./src/routes/LikePlace")
 
 app.use("/API/PlaceList", placeListRouter)
 app.use("/API/PlaceDetail", placeDetailRouter)
+app.use("/API/PlaceReview", placeReviewRouter)
 app.use("/API/LikePlace", likePlaceRouter)
 
 module.exports = app
