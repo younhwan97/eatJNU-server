@@ -29,6 +29,7 @@ const placeDetailRouter = require("./src/routes/PlaceDetail")
 const placeReviewRouter = require("./src/routes/PlaceReview")
 const likePlaceRouter = require("./src/routes/LikePlace")
 
+app.use("/private", privateRouter)
 app.use("/API/PlaceList", placeListRouter)
 app.use("/API/PlaceDetail", placeDetailRouter)
 app.use("/API/PlaceReview", placeReviewRouter)
