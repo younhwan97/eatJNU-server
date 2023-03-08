@@ -23,6 +23,7 @@ connection.connect()
 app.set('dbConnection', connection)
 
 // Routing
+const privateRouter = require("./src/routes/private")
 const placeListRouter = require("./src/routes/PlaceList")
 const placeDetailRouter = require("./src/routes/PlaceDetail")
 const placeReviewRouter = require("./src/routes/PlaceReview")
