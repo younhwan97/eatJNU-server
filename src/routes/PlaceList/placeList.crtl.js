@@ -20,13 +20,13 @@ const placeList = {
             if (result.length !== 0) {
                 for (let i = 0; i < result.length; i++) {
                     ans["items"].push({
-                        "id": result[i].store_id,
-                        "name": result[i].name,
-                        "image": result[i].url,
-                        "reviewCount": result[i].review_count,
-                        "likeCount": result[i].like_count,
-                        "tags": result[i].tags,
-                        "filter": result[i].filter
+                        "id": result[i].store_id ?? -1,
+                        "name": result[i].name ?? "",
+                        "image": result[i].url ?? "",
+                        "reviewCount": result[i].review_count ?? 0,
+                        "likeCount": result[i].like_count ?? 0,
+                        "tags": result[i].tags ?? "",
+                        "filter": result[i].filter ?? ""
                     })
                     ans["count"] += 1
                 }
