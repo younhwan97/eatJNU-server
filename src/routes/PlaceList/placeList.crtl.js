@@ -9,6 +9,7 @@ const placeList = {
 
         // 결과
         let ans = {
+            "count": 0,
             "items": []
         }
 
