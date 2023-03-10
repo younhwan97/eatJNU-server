@@ -27,6 +27,7 @@ const placeList = {
                         "tags": result[i].tags ?? "",
                         "filter": result[i].filter ?? ""
                     })
+                    ans["count"] += 1
                 }
             }
 
