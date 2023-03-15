@@ -29,9 +29,32 @@ const placeReview = {
                 let query_store = "UPDATE store SET review_count = ? WHERE store_id = ?;"
                 query_store = mysql.format(query_store, [count, placeId])
 
-                req.app.get('dbConnection').query(query_store, (err, result) => {if (err) throw err})
+                req.app.get('dbConnection').query(query_store, (err, result) => {
+                    if (err) throw err
+                })
             }
 
+
+            return res.json({
+                "isSuccess": true
+            })
+        })
+    },
+}
+
+const placeReviewReport = {
+    put: (req, res) => {
+        // 유저, 장소 아이디 정보를 얻어온다
+        const userId = req.params.user
+        const reviewId = req.params.review
+
+        // 쿼리 생성
+        let query = "INSERT INTO report (user_id, review_id) VALUES (?, ?);"
+        query = mysql.format(query, [userId, reviewId])
+
+        // DB 요청 및 리턴
+        req.app.get('dbConnection').query(query, (err, result) => {
+            if (err) throw err
 
             return res.json({
                 "isSuccess": true
@@ -41,5 +64,6 @@ const placeReview = {
 }
 
 module.exports = {
-    placeReview
+    placeReview,
+    placeReviewReport
 }

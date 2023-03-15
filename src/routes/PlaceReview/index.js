@@ -5,4 +5,6 @@ const ctrl = require("./placeReview.ctrl")
 
 router.post("/", ctrl.placeReview.post)
 
+router.put("/report/:user/:review", ctrl.placeReviewReport.put)
+
 module.exports = router

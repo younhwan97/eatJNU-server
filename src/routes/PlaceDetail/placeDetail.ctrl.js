@@ -12,7 +12,7 @@ const placeDetail = {
         let query_img = "SELECT url FROM image WHERE store_id = ?;"
         query_img = mysql.format(query_img, placeId)
 
-        let query_review = "SELECT comment, writing_time, user_id, like_count FROM review WHERE store_id = ? ORDER BY writing_time DESC;"
+        let query_review = "SELECT review_id, comment, writing_time, user_id, like_count FROM review WHERE store_id = ? ORDER BY writing_time DESC;"
         query_review = mysql.format(query_review, placeId)
 
         // 결과
@@ -63,6 +63,7 @@ const placeDetail = {
 
                 for (let i = 0; i < result[2].length; i++) {
                     ans["reviews"].push({
+                        "reviewId": result[2][i]["review_id"] ?? -1,
                         "comment": result[2][i]["comment"] ?? "",
                         "writingTime": result[2][i]["writing_time"] ?? "",
                         "userId": result[2][i]["user_id"] ?? "",
