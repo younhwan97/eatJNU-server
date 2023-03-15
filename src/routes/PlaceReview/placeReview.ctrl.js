@@ -34,7 +34,6 @@ const placeReview = {
                 })
             }
 
-
             return res.json({
                 "isSuccess": true
             })
@@ -96,7 +95,7 @@ const placeReviewReport = {
                 })
             }
 
-            return res.json({
+            res.json({
                 "isSuccess": true
             })
         })

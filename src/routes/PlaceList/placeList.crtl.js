@@ -9,7 +9,6 @@ const placeList = {
 
         // 결과
         let ans = {
-            "count": 0,
             "items": []
         }
 
@@ -28,7 +27,6 @@ const placeList = {
                         "tags": result[i].tags ?? "",
                         "filter": result[i].filter ?? ""
                     })
-                    ans["count"] += 1
                 }
             }
 
