@@ -43,18 +43,58 @@ const placeReview = {
 }
 
 const placeReviewReport = {
+    get: (req, res) => {
+        // 유저, 장소 아이디 정보를 얻어온다
+        const userId = req.params.user
+
+        // 쿼리 생성
+        let query = "SELECT review_id FROM report WHERE user_id = ?;"
+        query = mysql.format(query, userId)
+
+        // 결과
+        let ans = {
+            "items": []
+        }
+
+        // DB 요청 및 리턴
+        req.app.get('dbConnection').query(query, (err, result) => {
+            if (err) throw err
+
+            for (let i = 0; i < result.length; i++) {
+                ans["items"].push({
+                    "reviewId": result[i].review_id
+                })
+            }
+
+            return res.json(ans)
+        })
+    },
+
     put: (req, res) => {
         // 유저, 장소 아이디 정보를 얻어온다
         const userId = req.params.user
         const reviewId = req.params.review
 
         // 쿼리 생성
-        let query = "INSERT INTO report (user_id, review_id) VALUES (?, ?);"
-        query = mysql.format(query, [userId, reviewId])
+        let query_report = "INSERT INTO report (user_id, review_id) VALUES (?, ?);"
+        query_report = mysql.format(query_report, [userId, reviewId])
+
+        let query_count = "SELECT * FROM report WHERE review_id = ?;"
+        query_count = mysql.format(query_count, reviewId)
 
         // DB 요청 및 리턴
-        req.app.get('dbConnection').query(query, (err, result) => {
+        req.app.get('dbConnection').query(query_report + query_count, (err, result) => {
             if (err) throw err
+
+            // 신고가 3개 이상 누적된 리뷰일 때, 리뷰를 제거
+            if (result.length >= 2 && result[1].length >= 3) {
+                let query_review = "DELETE FROM review WHERE review_id = ?;"
+                query_review = mysql.format(query_review, reviewId)
+
+                req.app.get('dbConnection').query(query_review, (err, result) => {
+                    if (err) throw err
+                })
+            }
 
             return res.json({
                 "isSuccess": true
