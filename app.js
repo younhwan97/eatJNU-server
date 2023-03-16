@@ -4,9 +4,9 @@ const fs = require("fs")
 // Express
 const express = require('express')
 const app = express()
-app.use(express.json());
+app.use(express.json())
 
-// MySQL
+// MySQL & DBConnection
 const mysql = require('mysql')
 const dbConf = JSON.parse(fs.readFileSync('./config/database.json', 'utf-8'))
 const connection = mysql.createConnection({
@@ -17,10 +17,8 @@ const connection = mysql.createConnection({
     multipleStatements: true,
     dateStrings: "date"
 })
-connection.connect()
-
-// Setting
 app.set('dbConnection', connection)
+connection.connect()
 
 // Routing
 const privateRouter = require("./src/routes/private")
