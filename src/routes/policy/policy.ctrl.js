@@ -1,7 +1,7 @@
 const pv  = {
     get: (req, res) => {
         return res.sendFile(
-            __dirname + '/private.html'
+            __dirname + '/policy.html'
         )
     }
 }

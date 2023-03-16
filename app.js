@@ -21,13 +21,13 @@ app.set('dbConnection', connection)
 connection.connect()
 
 // Routing
-const privateRouter = require("./src/routes/private")
+const policyRouter = require("./src/routes/policy")
 const placeListRouter = require("./src/routes/PlaceList")
 const placeDetailRouter = require("./src/routes/PlaceDetail")
 const placeReviewRouter = require("./src/routes/PlaceReview")
 const likePlaceRouter = require("./src/routes/LikePlace")
 
-app.use("/private", privateRouter)
+app.use("/policy", policyRouter)
 app.use("/API/PlaceList", placeListRouter)
 app.use("/API/PlaceDetail", placeDetailRouter)
 app.use("/API/PlaceReview", placeReviewRouter)

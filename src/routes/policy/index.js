@@ -1,7 +1,7 @@
 // Module
 const express = require("express")
 const router = express.Router()
-const ctrl = require("./private.ctrl")
+const ctrl = require("./policy.ctrl")
 
 router.get('/', ctrl.pv.get)
 
