@@ -88,7 +88,7 @@ const placeReviewReport = {
         const reviewId = Number(req.params.reviewId)
 
         // 비정상적인 값이 왔을 때
-        if (!userId || reviewId) {
+        if (!userId || !reviewId) {
             return res.json({
                 "isSuccess": false
             })
