@@ -58,7 +58,7 @@ const likePlace = {
             }
 
             return res.json({
-                "placeId": placeId
+                "isSuccess": true
             })
         })
     },
