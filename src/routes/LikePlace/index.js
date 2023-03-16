@@ -3,10 +3,10 @@ const express = require("express")
 const router = express.Router()
 const ctrl = require("./likePlace.ctrl")
 
-router.get("/:user", ctrl.likePlace.get)
+router.get("/:userId", ctrl.likePlace.get)
 
-router.put('/:user/:place', ctrl.likePlace.put)
+router.put('/:userId/:placeId', ctrl.likePlace.put)
 
-router.delete('/:user/:place', ctrl.likePlace.delete)
+router.delete('/:userId/:placeId', ctrl.likePlace.delete)
 
 module.exports = router
