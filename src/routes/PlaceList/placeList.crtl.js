@@ -3,11 +3,11 @@ const mysql = require('mysql')
 const placeList = {
     get: (req, res) => {
         // 타입 정보를 얻어온다
-        const areaType = req.params.type
+        const areaType = Number(req.params.type) ?? 1
 
         // 쿼리 생성
         let query = "SELECT store_id, name, review_count, like_count, tags, filter, url FROM store WHERE area = ?;"
-        query = mysql.format(query, areaType)
+        query = mysql.format(query, [areaType])
 
         // 결과
         let ans = {
