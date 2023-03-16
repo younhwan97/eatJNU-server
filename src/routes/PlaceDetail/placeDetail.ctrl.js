@@ -5,16 +5,6 @@ const placeDetail = {
         // 장소의 아이디 정보를 얻어온다
         const placeId = Number(req.params.placeId)
 
-        // 쿼리 생성
-        let query_store = "SELECT * FROM store WHERE store_id = ?;"
-        query_store = mysql.format(query_store, [placeId])
-
-        let query_img = "SELECT url FROM image WHERE store_id = ?;"
-        query_img = mysql.format(query_img, [placeId])
-
-        let query_review = "SELECT review_id, comment, writing_time, user_id, like_count FROM review WHERE store_id = ? ORDER BY writing_time DESC;"
-        query_review = mysql.format(query_review, [placeId])
-
         // 결과
         let ans = {
             "id": -1,
@@ -32,6 +22,21 @@ const placeDetail = {
             "images": [],
             "reviews": []
         }
+
+        // 비정상적인 값이 왔을 때
+        if (!placeId) {
+            return res.json(ans)
+        }
+
+        // 쿼리 생성
+        let query_store = "SELECT * FROM store WHERE store_id = ?;"
+        query_store = mysql.format(query_store, [placeId])
+
+        let query_img = "SELECT url FROM image WHERE store_id = ?;"
+        query_img = mysql.format(query_img, [placeId])
+
+        let query_review = "SELECT review_id, comment, writing_time, user_id, like_count FROM review WHERE store_id = ? ORDER BY writing_time DESC;"
+        query_review = mysql.format(query_review, [placeId])
 
         // DB 요청 및 리턴
         req.app.get('dbConnection').query(query_store + query_img + query_review, (err, result) => {
