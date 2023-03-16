@@ -46,13 +46,15 @@ const likePlace = {
         req.app.get('dbConnection').query(query_like + query_like2, (err, result) => {
             if (err) throw err
 
-            if (result.length >= 2 && result[1] != null){
+            if (result.length >= 2 && result[1] != null) {
                 let count = result[1].length || 0
 
                 let query_store = "UPDATE store SET like_count = ? WHERE store_id = ?;"
                 query_store = mysql.format(query_store, [count, placeId])
 
-                req.app.get('dbConnection').query(query_store, (err, result) => {if (err) throw err})
+                req.app.get('dbConnection').query(query_store, (err, result) => {
+                    if (err) throw err
+                })
             }
 
             return res.json({
@@ -77,17 +79,19 @@ const likePlace = {
         req.app.get('dbConnection').query(query_like + query_like2, (err, result) => {
             if (err) throw err
 
-            if (result.length >= 2 && result[1] != null){
+            if (result.length >= 2 && result[1] != null) {
                 let count = result[1].length || 0
 
                 let query_store = "UPDATE store SET like_count = ? WHERE store_id = ?;"
                 query_store = mysql.format(query_store, [count, placeId])
 
-                req.app.get('dbConnection').query(query_store, (err, result) => {if (err) throw err})
+                req.app.get('dbConnection').query(query_store, (err, result) => {
+                    if (err) throw err
+                })
             }
 
             return res.json({
-                "placeId": placeId
+                "isSuccess": true
             })
         })
     }
