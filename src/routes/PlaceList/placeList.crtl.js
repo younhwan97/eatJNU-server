@@ -6,7 +6,7 @@ const placeList = {
         const areaType = Number(req.params.type) ?? 1
 
         // 쿼리 생성
-        let query = "SELECT store_id, name, review_count, like_count, tags, filter, url FROM store WHERE area = ?;"
+        let query = "SELECT store_id, name, review_count, like_count, tags, filter, url FROM store WHERE area = ? ORDER BY like_count DESC;"
         query = mysql.format(query, [areaType])
 
         // 결과
