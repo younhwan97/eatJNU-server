@@ -105,8 +105,8 @@ const placeReviewReport = {
         req.app.get('dbConnection').query(query_report + query_count, (err, result) => {
             if (err) throw err
 
-            // 신고가 5개 이상 누적된 리뷰일 때, 리뷰를 제거
-            if (result.length >= 2 && result[1].length >= 5) {
+            // 신고가 10개 이상 누적된 리뷰일 때, 리뷰를 제거
+            if (result.length >= 2 && result[1].length >= 10) {
                 let query_review = "DELETE FROM review WHERE review_id = ?;"
                 query_review = mysql.format(query_review, [reviewId])
 
