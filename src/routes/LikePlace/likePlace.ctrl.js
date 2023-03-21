@@ -113,6 +113,45 @@ const likePlace = {
                 "isSuccess": true
             })
         })
+    },
+
+    detail: (req, res) => {
+        // 유저, 장소 아이디 정보를 얻어온다
+        const userId = req.params.userId
+
+        // 결과
+        let ans = {
+            "items": []
+        }
+
+        // 비정상적인 값이 왔을 때
+        if (!userId) {
+            return res.json(ans)
+        }
+
+        // 쿼리 생성
+        let query = "SELECT * FROM like_store WHERE store_id = ?;"
+        query = mysql.format(query, [userId])
+
+        // DB 요청
+        req.app.get("dbConnection").query(query, (err, result) => {
+            if (err) throw err
+
+            let ids = []
+
+            for (let i = 0; i < result.length; i++) {
+                ids.push(result[i]["store_id"])
+            }
+
+            query = "SELECT store_id, name, review_count, like_count, tags, filter, url FROM store WHERE store_id in ?;"
+            query = mysql.format(query, ids)
+
+            req.app.get("dbConnection").query(query, (err, result) => {
+                if (err) throw err
+
+                console.log(result)
+            })
+        })
     }
 }
 
