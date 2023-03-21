@@ -173,8 +173,8 @@ const likePlace = {
                             ans["items"].push(item)
                         }
                     }
+                    return res.json(ans)
                 })
-                return res.json(ans)
             } else {
                 return res.json(ans)
             }
