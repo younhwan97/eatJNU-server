@@ -130,27 +130,54 @@ const likePlace = {
         }
 
         // 쿼리 생성
-        let query = "SELECT * FROM like_store WHERE store_id = ?;"
+        let query = "SELECT * FROM like_store WHERE user_id = ?;"
         query = mysql.format(query, [userId])
 
         // DB 요청
         req.app.get("dbConnection").query(query, (err, result) => {
             if (err) throw err
 
-            let ids = []
+            if (result.length !== 0) {
+                let ids = []
 
-            for (let i = 0; i < result.length; i++) {
-                ids.push(result[i]["store_id"])
+                for (let i = 0; i < result.length; i++) {
+                    ids.push(result[i]["store_id"])
+                }
+
+                query = "SELECT store_id, name, review_count, like_count, tags, filter, url, area FROM store WHERE store_id in (?);"
+                query = mysql.format(query, [ids])
+
+                req.app.get("dbConnection").query(query, (err, result) => {
+                    if (err) throw err
+
+                    if (result.length !== 0) {
+                        for (let i = 0; i < result.length; i++) {
+                            let item = {
+                                "id": result[i]["store_id"] ?? -1,
+                                "name": result[i]["name"] ?? "",
+                                "image": result[i]["url"] ?? "",
+                                "reviewCount": result[i]["review_count"] ?? 0,
+                                "likeCount": result[i]["like_count"] ?? 0,
+                                "tags": result[i]["tags"] ?? "",
+                                "filter": result[i]["filter"] ?? ""
+                            }
+
+                            if (result[i]["area"] === 0) {
+                                item.name += "(후문)"
+                            } else if (result[i]["area"] === 1) {
+                                item.name += "(상대)"
+                            } else if (result[i]["area"] === 2) {
+                                item.name += "(정문)"
+                            }
+
+                            ans["items"].push(item)
+                        }
+                    }
+                })
+                return res.json(ans)
+            } else {
+                return res.json(ans)
             }
-
-            query = "SELECT store_id, name, review_count, like_count, tags, filter, url FROM store WHERE store_id in ?;"
-            query = mysql.format(query, ids)
-
-            req.app.get("dbConnection").query(query, (err, result) => {
-                if (err) throw err
-
-                console.log(result)
-            })
         })
     }
 }
