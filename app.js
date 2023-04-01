@@ -16,7 +16,7 @@ const connection = mysql.createConnection({
     database: dbConf.database,
     multipleStatements: true,
     dateStrings: "date",
-    charset: "utf8mbf"
+    charset: "utf8mb4"
 })
 app.set('dbConnection', connection)
 connection.connect()
