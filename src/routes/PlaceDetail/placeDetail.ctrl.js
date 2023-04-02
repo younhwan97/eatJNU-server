@@ -35,7 +35,7 @@ const placeDetail = {
         let query_img = "SELECT url FROM image WHERE store_id = ?;"
         query_img = mysql.format(query_img, [placeId])
 
-        let query_review = "SELECT review_id, comment, writing_time, user_id, like_count FROM review WHERE store_id = ? ORDER BY writing_time DESC;"
+        let query_review = "SELECT review_id, comment, writing_time, user_id, like_count, store_id FROM review WHERE store_id = ? ORDER BY writing_time DESC;"
         query_review = mysql.format(query_review, [placeId])
 
         // DB 요청 및 리턴
