@@ -52,8 +52,7 @@ const placeReview = {
         // 리뷰 아이디, 유저 아이디 정보를 얻어온다
         const reviewId = Number(req.params.reviewId)
         const userId = req.params.userId
-
-        console.log(reviewId, userId)
+        const placeId = Number(req.params.placeId)
 
         // 비정상적인 값이 왔을 때
         if (!reviewId || isNaN(reviewId)) {
@@ -64,10 +63,10 @@ const placeReview = {
 
         // 쿼리 생성
         let query = ""
-        if (reviewId === -1) {
+        if (reviewId === -1) { // 리뷰 작성과 동시에 삭제를 시도한 경우 리뷰 아이디 값이 -1로 되어있음
             query = "DELETE FROM review WHERE user_id = ? order by review_id DESC limit 1;"
             query = mysql.format(query, [userId])
-        } else {
+        } else { // 리뷰 아이디와 유저 아이디를 확인하여 리뷰 제거
             query = "DELETE FROM review WHERE review_id = ? and user_id = ?;"
             query = mysql.format(query, [reviewId, userId])
         }
@@ -76,7 +75,16 @@ const placeReview = {
         req.app.get("dbConnection").query(query, (err, result) => {
             if (err) throw err
 
-            return res.json({
+            if (result["affectedRows"] === 1 && (placeId !== -1 && !isNaN(placeId))) {
+                query = "UPDATE store set review_count = review_count - 1 WHERE store_id = ?;"
+                query = mysql.format(query, [placeId])
+
+                req.app.get("dbConnection").query(query, () => {
+
+                })
+            }
+
+            res.json({
                 "isSuccess": true
             })
         })

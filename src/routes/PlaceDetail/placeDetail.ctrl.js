@@ -71,7 +71,8 @@ const placeDetail = {
                         "comment": result[2][i]["comment"] ?? "",
                         "writingTime": result[2][i]["writing_time"] ?? "",
                         "userId": result[2][i]["user_id"] ?? "",
-                        "likeCount": result[2][i]["like_count"] ?? 0
+                        "likeCount": result[2][i]["like_count"] ?? 0,
+                        "placeId": result[2][i]["store_id"] ?? -1
                     })
                 }
             }
