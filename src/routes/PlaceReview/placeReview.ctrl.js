@@ -13,7 +13,7 @@ const placeReview = {
         const writingTime = today.toISOString().replace('T', ' ').substring(0, 19);
 
         // 비정상적인 값이 왔을 때
-        if (!userId || !placeId || !comment) {
+        if (!userId || !placeId || isNaN(placeId) || !comment) {
             return res.json({
                 "isSuccess": false
             })
@@ -23,7 +23,7 @@ const placeReview = {
         let query_review = "INSERT INTO review (store_id, user_id, comment, writing_time) VALUES (?, ?, ?, ?);"
         query_review = mysql.format(query_review, [placeId, userId, comment, writingTime])
 
-        let query_review2 = "SELECT * FROM review WHERE store_id = ?"
+        let query_review2 = "SELECT * FROM review WHERE store_id = ?;"
         query_review2 = mysql.format(query_review2, [placeId])
 
         // DB 요청 및 리턴
@@ -47,6 +47,31 @@ const placeReview = {
             })
         })
     },
+
+    delete: (req, res) => {
+        // 리뷰 아이디를 정보를 얻어온다
+        const reviewId = Number(req.params.reviewId)
+
+        // 비정상적인 값이 왔을 때
+        if (!reviewId || reviewId === -1 || isNaN(reviewId)) {
+            return res.json({
+                "isSuccess": false
+            })
+        }
+
+        // 쿼리 생성
+        let query = "DELETE FROM review WHERE review_id = ?;"
+        query = mysql.format(query, [reviewId])
+
+        // DB 요청 및 리턴
+        req.app.get("dbConnection").query(query, (err, result) => {
+            if (err) throw err
+
+            return res.json({
+                "isSuccess": true
+            })
+        })
+    }
 }
 
 const placeReviewReport = {
@@ -88,7 +113,7 @@ const placeReviewReport = {
         const reviewId = Number(req.params.reviewId)
 
         // 비정상적인 값이 왔을 때
-        if (!userId || !reviewId) {
+        if (!userId || !reviewId || isNaN(reviewId)) {
             return res.json({
                 "isSuccess": false
             })

@@ -5,6 +5,8 @@ const ctrl = require("./placeReview.ctrl")
 
 router.post("/", ctrl.placeReview.post)
 
+router.delete("/", ctrl.placeReview.delete)
+
 router.get("/report/:userId", ctrl.placeReviewReport.get)
 
 router.put("/report/:userId/:reviewId", ctrl.placeReviewReport.put)
